@@ -221,10 +221,19 @@ function App() {
       <Layout>
         <Footer
           style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
             textAlign: "center",
           }}
         >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          <div>Хотите видеть больше? Подписывайтесь!</div>
+          <div>
+            <YoutubeOutlined />
+            <InstagramOutlined />
+            <XOutlined />
+            <FacebookOutlined />
+          </div>
         </Footer>
       </Layout>
     </div>
