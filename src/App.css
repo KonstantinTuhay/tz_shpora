@@ -6,12 +6,3 @@ body {
 .wrapper {
   height: 100%;
 }
-
-#dark {
-  background-color: black;
-  color: white;
-}
-
-#light {
-  background-color: #fff;
-}

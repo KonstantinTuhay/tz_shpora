@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
-import { Button, Spin, Layout, Menu, theme, FloatButton } from "antd";
+import { Button, Layout, Menu, theme, FloatButton, Modal } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -12,28 +12,64 @@ import ReactThis from "./ReactThis";
 import HomePage from "./HomePage";
 import InTheBegining from "./InTheBegining";
 import ConstrProject from "./ConstrProject";
-
-const { Header, Sider, Content } = Layout;
+import RegistrationForm from "./RegistrationForm";
+import AuthorizationForm from "./AuthorizationForm";
 
 function App() {
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  // const [modalText, setModalText] = useState("Content of the modal");
+  const showModal = () => {
+    setOpen1(true);
+  };
+  const showModal2 = () => {
+    setOpen2(true);
+  };
+  const handleOk1 = () => {
+    // setModalText("The modal will be closed after two seconds");
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen1(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+  const handleOk2 = () => {
+    // setModalText("The modal will be closed after two seconds");
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen2(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+  const handleCancel1 = () => {
+    console.log("Clicked cancel button");
+    setOpen1(false);
+  };
+  const handleCancel2 = () => {
+    console.log("Clicked cancel button");
+    setOpen2(false);
+  };
+
+  const { Header, Sider, Content } = Layout;
+
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const [spinning, setSpinning] = useState(false);
-  const showLoader = () => {
-    setSpinning(true);
-    setTimeout(() => {
-      setSpinning(false);
-    }, 3000);
-  };
-
-  const [darkMode, setDarkMode] = useState("light");
+  // const [spinning, setSpinning] = useState(false);
+  // const showLoader = () => {
+  //   setSpinning(true);
+  //   setTimeout(() => {
+  //     setSpinning(false);
+  //   }, 3000);
+  // };
 
   return (
-    <div className="wrapper" id={darkMode}>
-      <Layout>
+    <div className="wrapper">
+      <Layout id="general_layout">
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="demo-logo-vertical" />
           <Menu
@@ -82,6 +118,7 @@ function App() {
         </Sider>
         <Layout>
           <Header
+            id="header"
             style={{
               padding: 0,
               background: colorBgContainer,
@@ -98,8 +135,47 @@ function App() {
               }}
             />
             <b>Всё самое важное чтобы начать писать на React</b>
-            <button>Войти</button>
-            <button>Зарегистрироваться</button>
+
+            {/* ///////////////////////////////////////////////////////////////////////////////// */}
+            {/* Вход в личный кабинет */}
+            {/* ///////////////////////////////////////////////////////////////////////////////// */}
+            <>
+              <Button type="primary" danger onClick={showModal}>
+                Войти
+              </Button>
+              <Modal
+                title="Войти"
+                open={open1}
+                onOk={handleOk1}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel1}
+              >
+                <p>
+                  <AuthorizationForm />
+                </p>
+              </Modal>
+            </>
+
+            {/* ///////////////////////////////////////////////////////////////////////////////// */}
+            {/* Регистрация */}
+            {/* ///////////////////////////////////////////////////////////////////////////////// */}
+
+            <>
+              <Button type="primary" onClick={showModal2}>
+                Зарегистрироваться
+              </Button>
+              <Modal
+                title="Регистрация"
+                open={open2}
+                onOk={handleOk2}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel2}
+              >
+                <p>
+                  <RegistrationForm />
+                </p>
+              </Modal>
+            </>
           </Header>
           <Content
             style={{
@@ -112,10 +188,7 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
-              <Route
-                path="/reactthis"
-                element={<ReactThis showLoader={showLoader} />}
-              ></Route>
+              <Route path="/reactthis" element={<ReactThis />}></Route>
               <Route path="/inthebegining" element={<InTheBegining />}></Route>
               <Route path="/constr_ptoject" element={<ConstrProject />}></Route>
             </Routes>
@@ -123,23 +196,6 @@ function App() {
           </Content>
         </Layout>
       </Layout>
-      {/* ////////////////////////////////////////////////////////// */}
-      {/* ////////////////////////////////////////////////////////// */}
-      {/* ////////////////////////////////////////////////////////// */}
-
-      <Button onClick={showLoader}>Show fullscreen for 3s</Button>
-      <Spin spinning={spinning} fullscreen />
-
-      <label>
-        <input
-          type="checkbox"
-          checked={darkMode === "dark"}
-          onChange={(e) => {
-            setDarkMode(e.target.checked ? "dark" : "light");
-          }}
-        />
-        Use {darkMode === "light" ? "dark" : "light"} mode
-      </label>
     </div>
   );
 }

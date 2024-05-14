@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "antd";
 
 const InTheBegining = () => {
   const navigate = useNavigate();
@@ -99,8 +100,8 @@ const InTheBegining = () => {
           приложение автоматически перезагружается в браузере.
         </li>
       </ol>
-      <button onClick={general}>На главную</button>
-      <button onClick={nextPage}>Структура проекта</button>
+      <Button onClick={general}>На главную</Button>
+      <Button onClick={nextPage}>Структура проекта</Button>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "antd";
 
 const ReactThis = () => {
   const navigate = useNavigate();
@@ -80,9 +81,8 @@ const ReactThis = () => {
           React имеет большое сообщество разработчиков и открытый исходный код.
         </li>
       </ul>
-
-      <button onClick={general}>На главную</button>
-      <button onClick={nextPage}>С чего начать?</button>
+      <Button onClick={general}>На главную</Button>
+      <Button onClick={nextPage}>С чего начать?</Button>
     </div>
   );
 };

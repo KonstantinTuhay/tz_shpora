@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "antd";
 
 const ConstrProject = () => {
   const navigate = useNavigate();
@@ -203,7 +204,7 @@ const ConstrProject = () => {
         </li>
       </ol>
 
-      <button onClick={general}>На главную</button>
+      <Button onClick={general}>На главную</Button>
     </>
   );
 };
