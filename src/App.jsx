@@ -5,7 +5,11 @@ import { Button, Layout, Menu, theme, FloatButton, Modal } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  YoutubeOutlined,
   MinusOutlined,
+  InstagramOutlined,
+  XOutlined,
+  FacebookOutlined,
 } from "@ant-design/icons";
 
 import ReactThis from "./ReactThis";
@@ -14,6 +18,7 @@ import InTheBegining from "./InTheBegining";
 import ConstrProject from "./ConstrProject";
 import RegistrationForm from "./RegistrationForm";
 import AuthorizationForm from "./AuthorizationForm";
+import { Footer } from "antd/es/layout/layout";
 
 function App() {
   const [open1, setOpen1] = useState(false);
@@ -69,6 +74,66 @@ function App() {
 
   return (
     <div className="wrapper">
+      <Layout>
+        <Header
+          id="header"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+            padding: 0,
+            background: colorBgContainer,
+            textAlign: "center",
+            backgroundColor: "#0b89ff",
+            color: "white",
+          }}
+        >
+          <div>
+            <YoutubeOutlined />
+            <InstagramOutlined />
+            <XOutlined />
+            <FacebookOutlined />
+          </div>
+
+          <b>Всё самое важное чтобы начать писать на React</b>
+
+          {/* Вход в личный кабинет и регистрация*/}
+          <div>
+            <Button type="primary" danger onClick={showModal}>
+              Войти
+            </Button>
+            <Modal
+              title="Войти"
+              open={open1}
+              onOk={handleOk1}
+              confirmLoading={confirmLoading}
+              onCancel={handleCancel1}
+            >
+              <p>
+                <AuthorizationForm />
+              </p>
+            </Modal>
+
+            <Button type="primary" onClick={showModal2}>
+              Зарегистрироваться
+            </Button>
+            <Modal
+              title="Регистрация"
+              open={open2}
+              onOk={handleOk2}
+              confirmLoading={confirmLoading}
+              onCancel={handleCancel2}
+            >
+              <p>
+                <RegistrationForm />
+              </p>
+            </Modal>
+          </div>
+        </Header>
+      </Layout>
+      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\menu\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
       <Layout id="general_layout">
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="demo-logo-vertical" />
@@ -115,86 +180,52 @@ function App() {
               },
             ]}
           />
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: "16px",
+              width: 64,
+              height: 64,
+              color: "white",
+            }}
+          />
         </Sider>
-        <Layout>
-          <Header
-            id="header"
-            style={{
-              padding: 0,
-              background: colorBgContainer,
-            }}
-          >
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-              }}
-            />
-            <b>Всё самое важное чтобы начать писать на React</b>
+        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\content\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
 
-            {/* ///////////////////////////////////////////////////////////////////////////////// */}
-            {/* Вход в личный кабинет */}
-            {/* ///////////////////////////////////////////////////////////////////////////////// */}
-            <>
-              <Button type="primary" danger onClick={showModal}>
-                Войти
-              </Button>
-              <Modal
-                title="Войти"
-                open={open1}
-                onOk={handleOk1}
-                confirmLoading={confirmLoading}
-                onCancel={handleCancel1}
-              >
-                <p>
-                  <AuthorizationForm />
-                </p>
-              </Modal>
-            </>
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/reactthis" element={<ReactThis />}></Route>
+            <Route path="/inthebegining" element={<InTheBegining />}></Route>
+            <Route path="/constr_ptoject" element={<ConstrProject />}></Route>
+          </Routes>
+          <FloatButton.BackTop />
+        </Content>
+      </Layout>
 
-            {/* ///////////////////////////////////////////////////////////////////////////////// */}
-            {/* Регистрация */}
-            {/* ///////////////////////////////////////////////////////////////////////////////// */}
-
-            <>
-              <Button type="primary" onClick={showModal2}>
-                Зарегистрироваться
-              </Button>
-              <Modal
-                title="Регистрация"
-                open={open2}
-                onOk={handleOk2}
-                confirmLoading={confirmLoading}
-                onCancel={handleCancel2}
-              >
-                <p>
-                  <RegistrationForm />
-                </p>
-              </Modal>
-            </>
-          </Header>
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<HomePage />}></Route>
-              <Route path="/reactthis" element={<ReactThis />}></Route>
-              <Route path="/inthebegining" element={<InTheBegining />}></Route>
-              <Route path="/constr_ptoject" element={<ConstrProject />}></Route>
-            </Routes>
-            <FloatButton.BackTop />
-          </Content>
-        </Layout>
+      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\footer\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+      <Layout>
+        <Footer
+          style={{
+            textAlign: "center",
+          }}
+        >
+          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        </Footer>
       </Layout>
     </div>
   );
