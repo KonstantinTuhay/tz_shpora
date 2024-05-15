@@ -25,7 +25,6 @@ function App() {
   const [open2, setOpen2] = useState(false);
 
   const [confirmLoading, setConfirmLoading] = useState(false);
-  // const [modalText, setModalText] = useState("Content of the modal");
   const showModal = () => {
     setOpen1(true);
   };
@@ -33,7 +32,6 @@ function App() {
     setOpen2(true);
   };
   const handleOk1 = () => {
-    // setModalText("The modal will be closed after two seconds");
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen1(false);
@@ -41,7 +39,6 @@ function App() {
     }, 2000);
   };
   const handleOk2 = () => {
-    // setModalText("The modal will be closed after two seconds");
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen2(false);
