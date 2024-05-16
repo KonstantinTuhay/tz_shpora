@@ -1,17 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "antd";
+import NavigateHelpers from "../helpers/NavigateHelpers";
 
 const ConstrProject = () => {
   const navigate = useNavigate();
 
-  const general = () => {
-    navigate("/");
-  };
-
-  const nextPage = () => {
-    navigate("/**");
-  };
   return (
     <>
       <h1>
@@ -204,7 +197,7 @@ const ConstrProject = () => {
         </li>
       </ol>
 
-      <Button onClick={general}>На главную</Button>
+      <NavigateHelpers navigate={navigate} params={"/"} txt="На главную" />
     </>
   );
 };

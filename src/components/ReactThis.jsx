@@ -1,17 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "antd";
+import NavigateHelpers from "../helpers/NavigateHelpers";
 
 const ReactThis = () => {
   const navigate = useNavigate();
 
-  const general = () => {
-    navigate("/");
-  };
+  // const general = () => {
+  //   navigate("/");
+  // };
 
-  const nextPage = () => {
-    navigate("/inthebegining");
-  };
+  // const nextPage = () => {
+  //   navigate("/inthebegining");
+  // };
 
   return (
     <div>
@@ -81,8 +81,13 @@ const ReactThis = () => {
           React имеет большое сообщество разработчиков и открытый исходный код.
         </li>
       </ul>
-      <Button onClick={general}>На главную</Button>
-      <Button onClick={nextPage}>С чего начать?</Button>
+
+      <NavigateHelpers navigate={navigate} params="/" txt="На главную" />
+      <NavigateHelpers
+        navigate={navigate}
+        params="/inthebegining"
+        txt="С чего начать?"
+      />
     </div>
   );
 };

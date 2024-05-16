@@ -1,17 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "antd";
+import NavigateHelpers from "../helpers/NavigateHelpers";
 
 const InTheBegining = () => {
   const navigate = useNavigate();
 
-  const general = () => {
-    navigate("/");
-  };
-
-  const nextPage = () => {
-    navigate("/constr_ptoject");
-  };
   return (
     <>
       <h2>
@@ -100,8 +93,13 @@ const InTheBegining = () => {
           приложение автоматически перезагружается в браузере.
         </li>
       </ol>
-      <Button onClick={general}>На главную</Button>
-      <Button onClick={nextPage}>Структура проекта</Button>
+
+      <NavigateHelpers navigate={navigate} params="/" txt="На главную" />
+      <NavigateHelpers
+        navigate={navigate}
+        params="/constr_ptoject"
+        txt="Структура проекта"
+      />
     </>
   );
 };
