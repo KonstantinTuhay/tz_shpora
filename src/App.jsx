@@ -12,12 +12,12 @@ import {
   FacebookOutlined,
 } from "@ant-design/icons";
 
-import ReactThis from "./ReactThis";
-import HomePage from "./HomePage";
-import InTheBegining from "./InTheBegining";
-import ConstrProject from "./ConstrProject";
-import RegistrationForm from "./RegistrationForm";
-import AuthorizationForm from "./AuthorizationForm";
+import ReactThis from "./components/ReactThis";
+import HomePage from "./components/HomePage";
+import InTheBegining from "./components/InTheBegining";
+import ConstrProject from "./components/ConstrProject";
+import RegistrationForm from "./components/RegistrationForm";
+import AuthorizationForm from "./components/AuthorizationForm";
 import { Footer } from "antd/es/layout/layout";
 
 function App() {
@@ -60,14 +60,6 @@ function App() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
-  // const [spinning, setSpinning] = useState(false);
-  // const showLoader = () => {
-  //   setSpinning(true);
-  //   setTimeout(() => {
-  //     setSpinning(false);
-  //   }, 3000);
-  // };
 
   return (
     <div className="wrapper">
