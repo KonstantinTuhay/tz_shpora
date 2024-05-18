@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
-import { Button, Layout, Menu, theme, FloatButton, Modal } from "antd";
+import { Button, Layout, Menu, Switch, FloatButton, Modal } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -21,6 +21,8 @@ import AuthorizationForm from "./components/AuthorizationForm";
 import { Footer } from "antd/es/layout/layout";
 
 function App() {
+  const [theme, setTheme] = useState("dark");
+
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
 
@@ -57,38 +59,80 @@ function App() {
   const { Header, Sider, Content } = Layout;
 
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   return (
     <div className="wrapper">
       <Layout>
         <Header
-          id="header"
+          className="h_f"
+          id={theme}
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-around",
             padding: 0,
-            background: colorBgContainer,
             textAlign: "center",
-            backgroundColor: "#0b89ff",
             color: "white",
           }}
         >
           <div>
-            <YoutubeOutlined />
-            <InstagramOutlined />
-            <XOutlined />
-            <FacebookOutlined />
+            <a
+              href="https://www.youtube.com/"
+              style={{
+                margin: 10,
+              }}
+            >
+              <YoutubeOutlined />
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              style={{
+                margin: 10,
+              }}
+            >
+              <InstagramOutlined />
+            </a>
+            <a
+              href="https://twitter.com/i/flow/signup"
+              style={{
+                margin: 10,
+              }}
+            >
+              <XOutlined />
+            </a>
+            <a
+              href="https://www.facebook.com/"
+              style={{
+                margin: 10,
+              }}
+            >
+              <FacebookOutlined />
+            </a>
           </div>
 
-          <b>Всё самое важное чтобы начать писать на React</b>
+          <h1>
+            <b>Всё самое важное, чтобы начать писать на React</b>
+          </h1>
 
           {/* Вход в личный кабинет и регистрация*/}
           <div>
-            <Button type="primary" danger onClick={showModal}>
+            <Switch
+              checked={theme === "dark"}
+              onChange={(value) => {
+                setTheme(value ? "dark" : "light");
+              }}
+              checkedChildren="Dark"
+              unCheckedChildren="Light"
+            />
+
+            <Button
+              type="primary"
+              danger
+              onClick={showModal}
+              style={{
+                margin: 10,
+              }}
+            >
               Войти
             </Button>
             <Modal
@@ -123,11 +167,19 @@ function App() {
       {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
       {/* \\\\\\\\\\\\\\\\\\\\\\\\\\menu\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
       {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      <Layout id="general_layout">
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Layout className="between" id={theme}>
+        <Sider
+          // className="sider"
+          // id={theme}
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+        >
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"
+            // className="menu"
+            // id={theme}
             mode="inline"
             defaultSelectedKeys={["1"]}
             items={[
@@ -186,12 +238,13 @@ function App() {
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
 
         <Content
+          id={theme}
           style={{
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
+            // background: colorBgContainer,
+            // borderRadius: borderRadiusLG,
           }}
         >
           <Routes>
@@ -209,6 +262,8 @@ function App() {
       {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
       <Layout>
         <Footer
+          className="h_f"
+          id={theme}
           style={{
             display: "flex",
             alignItems: "center",
@@ -216,12 +271,40 @@ function App() {
             textAlign: "center",
           }}
         >
-          <div>Хотите видеть больше? Подписывайтесь!</div>
           <div>
-            <YoutubeOutlined />
-            <InstagramOutlined />
-            <XOutlined />
-            <FacebookOutlined />
+            <p>Хотите видеть больше? Подписывайтесь!</p>
+            <a
+              href="https://www.youtube.com/"
+              style={{
+                margin: 10,
+              }}
+            >
+              <YoutubeOutlined />
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              style={{
+                margin: 10,
+              }}
+            >
+              <InstagramOutlined />
+            </a>
+            <a
+              href="https://twitter.com/i/flow/signup"
+              style={{
+                margin: 10,
+              }}
+            >
+              <XOutlined />
+            </a>
+            <a
+              href="https://www.facebook.com/"
+              style={{
+                margin: 10,
+              }}
+            >
+              <FacebookOutlined />
+            </a>
           </div>
         </Footer>
       </Layout>

@@ -6,3 +6,31 @@ body {
 .wrapper {
   height: 100%;
 }
+
+#dark {
+  background-color: #001529;
+  color: white;
+}
+
+#light {
+  background-color: white;
+  color: black;
+}
+
+.between#dark {
+  background-color: rgba(0, 0, 0, 0.917);
+}
+
+.between#light {
+  background-color: #f5f5f5;
+}
+
+.h_f#light {
+  background-color: #001529;
+  color: white;
+}
+
+.h_f#dark {
+  background-color: #001529;
+  color: white;
+}
