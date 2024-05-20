@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import NavigateHelpers from "../helpers/NavigateHelpers";
+import NavigateHelpers from "../helpers/navigateHOC";
 
 const InTheBegining = () => {
   const navigate = useNavigate();

@@ -13,6 +13,7 @@ import {
 } from "@ant-design/icons";
 
 import ReactThis from "./components/ReactThis";
+import withAdditionalFunctions from "./helpers/navigateHOC";
 import HomePage from "./components/HomePage";
 import InTheBegining from "./components/InTheBegining";
 import ConstrProject from "./components/ConstrProject";
@@ -21,6 +22,15 @@ import AuthorizationForm from "./components/AuthorizationForm";
 import { Footer } from "antd/es/layout/layout";
 
 function App() {
+  const routes = [
+    {
+      route: "/reactthis",
+      component: ReactThis,
+    },
+    { route: "/inthebegining", component: InTheBegining },
+    { route: "/constr_ptoject", component: ConstrProject },
+  ];
+
   const [theme, setTheme] = useState("dark");
 
   const [open1, setOpen1] = useState(false);
@@ -248,10 +258,21 @@ function App() {
           }}
         >
           <Routes>
-            <Route path="/" element={<HomePage />}></Route>
+            {routes.map((item, index, array) => {
+              const NewComponent = withAdditionalFunctions(item.component);
+              return (
+                <Route
+                  key={item.route}
+                  path={item.route}
+                  element={<NewComponent nextRoute={array[index + 1]?.route} />}
+                />
+              );
+            })}
+
+            {/* <Route path="/" element={<HomePage />}></Route>
             <Route path="/reactthis" element={<ReactThis />}></Route>
             <Route path="/inthebegining" element={<InTheBegining />}></Route>
-            <Route path="/constr_ptoject" element={<ConstrProject />}></Route>
+            <Route path="/constr_ptoject" element={<ConstrProject />}></Route> */}
           </Routes>
           <FloatButton.BackTop />
         </Content>

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavigateHelpers from "../helpers/NavigateHelpers";
 
-const ReactThis = () => {
+const ReactThis = (props) => {
   const navigate = useNavigate();
 
   // const general = () => {
@@ -82,12 +82,8 @@ const ReactThis = () => {
         </li>
       </ul>
 
-      <NavigateHelpers navigate={navigate} params="/" txt="На главную" />
-      <NavigateHelpers
-        navigate={navigate}
-        params="/inthebegining"
-        txt="С чего начать?"
-      />
+      <NavigateHelpers callback={props.goToPage} txt="На глвыную" path="/" />
+      <NavigateHelpers callback={props.goToPage} />
     </div>
   );
 };
