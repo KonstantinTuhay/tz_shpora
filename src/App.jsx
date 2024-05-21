@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import { Button, Layout, Menu, Switch, FloatButton, Modal } from "antd";
@@ -21,8 +21,9 @@ import RegistrationForm from "./components/RegistrationForm";
 import AuthorizationForm from "./components/AuthorizationForm";
 import { Footer } from "antd/es/layout/layout";
 
-function App() {
+export default function App() {
   const routes = [
+    { route: "/", component: HomePage },
     {
       route: "/reactthis",
       component: ReactThis,
@@ -70,267 +71,313 @@ function App() {
 
   const [collapsed, setCollapsed] = useState(false);
 
-  return (
-    <div className="wrapper">
-      <Layout>
-        <Header
-          className="h_f"
-          id={theme}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            padding: 0,
-            textAlign: "center",
-            color: "white",
-          }}
-        >
-          <div>
-            <a
-              href="https://www.youtube.com/"
-              style={{
-                margin: 10,
-              }}
-            >
-              <YoutubeOutlined />
-            </a>
-            <a
-              href="https://www.instagram.com/"
-              style={{
-                margin: 10,
-              }}
-            >
-              <InstagramOutlined />
-            </a>
-            <a
-              href="https://twitter.com/i/flow/signup"
-              style={{
-                margin: 10,
-              }}
-            >
-              <XOutlined />
-            </a>
-            <a
-              href="https://www.facebook.com/"
-              style={{
-                margin: 10,
-              }}
-            >
-              <FacebookOutlined />
-            </a>
-          </div>
+  function SuspLoad() {
+    return <h2>🌀 Loading...</h2>;
 
-          <h1>
-            <b>Всё самое важное, чтобы начать писать на React</b>
-          </h1>
+    // {
+    //   /* Не работает Suspense */
+    // }
 
-          {/* Вход в личный кабинет и регистрация*/}
-          <div>
-            <Switch
-              checked={theme === "dark"}
-              onChange={(value) => {
-                setTheme(value ? "dark" : "light");
-              }}
-              checkedChildren="Dark"
-              unCheckedChildren="Light"
-            />
+    // return (
+    //   <>
+    //     <p>sdsadsadas</p>
+    //     <img
+    //       src="..\public\image\react-logo-7B3CE81517-seeklogo.com.png"
+    //       alt="imgReact"
+    //     />
+    //   </>
+    // );
+  }
 
-            <Button
-              type="primary"
-              danger
-              onClick={showModal}
-              style={{
-                margin: 10,
-              }}
-            >
-              Войти
-            </Button>
-            <Modal
-              title="Войти"
-              open={open1}
-              onOk={handleOk1}
-              confirmLoading={confirmLoading}
-              onCancel={handleCancel1}
-            >
-              <p>
-                <AuthorizationForm />
-              </p>
-            </Modal>
+  const [reactSpin, setReactSpin] = useState(false);
 
-            <Button type="primary" onClick={showModal2}>
-              Зарегистрироваться
-            </Button>
-            <Modal
-              title="Регистрация"
-              open={open2}
-              onOk={handleOk2}
-              confirmLoading={confirmLoading}
-              onCancel={handleCancel2}
-            >
-              <p>
-                <RegistrationForm />
-              </p>
-            </Modal>
-          </div>
-        </Header>
-      </Layout>
-      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\menu\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      <Layout className="between" id={theme}>
-        <Sider
-          // className="sider"
-          // id={theme}
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-        >
-          <div className="demo-logo-vertical" />
-          <Menu
-            theme="dark"
-            // className="menu"
-            // id={theme}
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            items={[
-              {
-                key: "1",
-                icon: <MinusOutlined />,
-                label: (
-                  <NavLink to="/" activeClassName="active">
-                    Быстрый старт
-                  </NavLink>
-                ),
-              },
-              {
-                key: "2",
-                icon: <MinusOutlined />,
-                label: (
-                  <NavLink to="/reactthis" activeClassName="active">
-                    React - это...
-                  </NavLink>
-                ),
-              },
-              {
-                key: "3",
-                icon: <MinusOutlined />,
-                label: (
-                  <NavLink to="/inthebegining" activeClassName="active">
-                    С чего начать?
-                  </NavLink>
-                ),
-              },
-              {
-                key: "4",
-                icon: <MinusOutlined />,
-                label: (
-                  <NavLink to="/constr_ptoject" activeClassName="active">
-                    Структура проекта
-                  </NavLink>
-                ),
-              },
-            ]}
-          />
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-              color: "white",
-            }}
-          />
-        </Sider>
-        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\content\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+  function SpinReact() {
+    return (
+      <>
+        <Suspense fallback={<h2>🌀 Loading...</h2>}>
+          <div className="wrapper">
+            <Layout>
+              <Header
+                className="h_f"
+                id={theme}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  padding: 0,
+                  textAlign: "center",
+                  color: "white",
+                }}
+              >
+                <div>
+                  <a
+                    href="https://www.youtube.com/"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <YoutubeOutlined />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <InstagramOutlined />
+                  </a>
+                  <a
+                    href="https://twitter.com/i/flow/signup"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <XOutlined />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <FacebookOutlined />
+                  </a>
+                </div>
 
-        <Content
-          id={theme}
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            // background: colorBgContainer,
-            // borderRadius: borderRadiusLG,
-          }}
-        >
-          <Routes>
-            {routes.map((item, index, array) => {
-              const NewComponent = withAdditionalFunctions(item.component);
-              return (
-                <Route
-                  key={item.route}
-                  path={item.route}
-                  element={<NewComponent nextRoute={array[index + 1]?.route} />}
+                <h1>
+                  <b>Всё самое важное, чтобы начать писать на React</b>
+                </h1>
+
+                {/* Вход в личный кабинет и регистрация*/}
+                <div>
+                  <Switch
+                    checked={theme === "dark"}
+                    onChange={(value) => {
+                      setTheme(value ? "dark" : "light");
+                    }}
+                    checkedChildren="Dark"
+                    unCheckedChildren="Light"
+                  />
+
+                  <Button
+                    id="form_btn"
+                    type="primary"
+                    danger
+                    onClick={showModal}
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    Войти
+                  </Button>
+                  <Modal
+                    title="Войти"
+                    open={open1}
+                    onOk={handleOk1}
+                    confirmLoading={confirmLoading}
+                    onCancel={handleCancel1}
+                  >
+                    <p>
+                      <AuthorizationForm />
+                    </p>
+                  </Modal>
+
+                  <Button type="primary" onClick={showModal2}>
+                    Зарегистрироваться
+                  </Button>
+                  <Modal
+                    title="Регистрация"
+                    open={open2}
+                    onOk={handleOk2}
+                    confirmLoading={confirmLoading}
+                    onCancel={handleCancel2}
+                  >
+                    <p>
+                      <RegistrationForm />
+                    </p>
+                  </Modal>
+                </div>
+              </Header>
+            </Layout>
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\menu\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+            <Layout className="between" id={theme}>
+              <Sider
+                // className="sider"
+                // id={theme}
+                trigger={null}
+                collapsible
+                collapsed={collapsed}
+              >
+                <div className="demo-logo-vertical" />
+                <Menu
+                  theme="dark"
+                  // className="menu"
+                  // id={theme}
+                  mode="inline"
+                  defaultSelectedKeys={["1"]}
+                  items={[
+                    {
+                      key: "1",
+                      icon: <MinusOutlined />,
+                      label: (
+                        <NavLink to="/" activeClassName="active">
+                          Быстрый старт
+                        </NavLink>
+                      ),
+                    },
+                    {
+                      key: "2",
+                      icon: <MinusOutlined />,
+                      label: (
+                        <NavLink to="/reactthis" activeClassName="active">
+                          React - это...
+                        </NavLink>
+                      ),
+                    },
+                    {
+                      key: "3",
+                      icon: <MinusOutlined />,
+                      label: (
+                        <NavLink to="/inthebegining" activeClassName="active">
+                          С чего начать?
+                        </NavLink>
+                      ),
+                    },
+                    {
+                      key: "4",
+                      icon: <MinusOutlined />,
+                      label: (
+                        <NavLink to="/constr_ptoject" activeClassName="active">
+                          Структура проекта
+                        </NavLink>
+                      ),
+                    },
+                  ]}
                 />
-              );
-            })}
+                <Button
+                  type="text"
+                  icon={
+                    collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
+                  }
+                  onClick={() => setCollapsed(!collapsed)}
+                  style={{
+                    fontSize: "16px",
+                    width: 64,
+                    height: 64,
+                    color: "white",
+                  }}
+                />
+              </Sider>
+              {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+              {/* \\\\\\\\\\\\\\\\\\\\\\\\\\content\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+              {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
 
-            {/* <Route path="/" element={<HomePage />}></Route>
-            <Route path="/reactthis" element={<ReactThis />}></Route>
-            <Route path="/inthebegining" element={<InTheBegining />}></Route>
-            <Route path="/constr_ptoject" element={<ConstrProject />}></Route> */}
-          </Routes>
-          <FloatButton.BackTop />
-        </Content>
-      </Layout>
+              <Content
+                id={theme}
+                style={{
+                  margin: "24px 16px",
+                  padding: 24,
+                  minHeight: 280,
+                  // background: colorBgContainer,
+                  // borderRadius: borderRadiusLG,
+                }}
+              >
+                <Routes>
+                  {routes.map((item, index, array) => {
+                    const NewComponent = withAdditionalFunctions(
+                      item.component
+                    );
+                    return (
+                      <Route
+                        key={item.route}
+                        path={item.route}
+                        element={
+                          <NewComponent nextRoute={array[index + 1]?.route} />
+                        }
+                      />
+                    );
+                  })}
 
-      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\footer\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
-      <Layout>
-        <Footer
-          className="h_f"
-          id={theme}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <p>Хотите видеть больше? Подписывайтесь!</p>
-            <a
-              href="https://www.youtube.com/"
-              style={{
-                margin: 10,
-              }}
-            >
-              <YoutubeOutlined />
-            </a>
-            <a
-              href="https://www.instagram.com/"
-              style={{
-                margin: 10,
-              }}
-            >
-              <InstagramOutlined />
-            </a>
-            <a
-              href="https://twitter.com/i/flow/signup"
-              style={{
-                margin: 10,
-              }}
-            >
-              <XOutlined />
-            </a>
-            <a
-              href="https://www.facebook.com/"
-              style={{
-                margin: 10,
-              }}
-            >
-              <FacebookOutlined />
-            </a>
+                  {/* <Route path="/" element={<HomePage />}></Route>
+          <Route path="/reactthis" element={<ReactThis />}></Route>
+          <Route path="/inthebegining" element={<InTheBegining />}></Route>
+          <Route path="/constr_ptoject" element={<ConstrProject />}></Route> */}
+                </Routes>
+                <FloatButton.BackTop />
+              </Content>
+
+              <Sider></Sider>
+            </Layout>
+
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\footer\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+            <Layout>
+              <Footer
+                className="h_f"
+                id={theme}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <p>Хотите видеть больше? Подписывайтесь!</p>
+                  <a
+                    href="https://www.youtube.com/"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <YoutubeOutlined />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <InstagramOutlined />
+                  </a>
+                  <a
+                    href="https://twitter.com/i/flow/signup"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <XOutlined />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/"
+                    style={{
+                      margin: 10,
+                    }}
+                  >
+                    <FacebookOutlined />
+                  </a>
+                </div>
+              </Footer>
+            </Layout>
           </div>
-        </Footer>
-      </Layout>
-    </div>
-  );
-}
+        </Suspense>
+        {/* Не работает Suspense */}
+      </>
+    );
+  }
 
-export default App;
+  if (reactSpin) {
+    return <SpinReact />;
+  } else {
+    return (
+      <div id="btnWrapper">
+        <button id="btnStart" onClick={() => setReactSpin(true)}>
+          Изучить React
+        </button>
+      </div>
+    );
+  }
+}

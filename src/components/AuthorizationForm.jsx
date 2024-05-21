@@ -18,7 +18,7 @@ const AuthorizationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form id="form_wrapper" onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>Имя:</label>
         <Controller
