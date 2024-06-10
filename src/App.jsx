@@ -52,7 +52,7 @@ export default function App() {
         <Layout>
           <MyContext.Provider value={[theme, setTheme]}>
             <Header
-              className="h_h"
+              className="main_header"
               id={theme}
               style={{
                 display: "flex",
@@ -61,6 +61,7 @@ export default function App() {
                 padding: 0,
                 textAlign: "center",
               }}
+              // Почему когда прописываю эти же стили в css, оно не срабатывает?
             >
               <MainHeader />
             </Header>
@@ -71,7 +72,7 @@ export default function App() {
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         <Layout className="between" id={theme}>
           <Sider trigger={null} collapsible collapsed={collapsed}>
-            <div className="demo-logo-vertical" />
+            <LeftMenu />
             <Menu
               theme="dark"
               mode="inline"
@@ -154,9 +155,9 @@ export default function App() {
               })}
 
               {/* <Route path="/" element={<HomePage />}></Route>
-          <Route path="/reactthis" element={<ReactThis />}></Route>
-          <Route path="/inthebegining" element={<InTheBegining />}></Route>
-          <Route path="/constr_ptoject" element={<ConstrProject />}></Route> */}
+              <Route path="/reactthis" element={<ReactThis />}></Route>
+              <Route path="/inthebegining" element={<InTheBegining />}></Route>
+              <Route path="/constr_ptoject" element={<ConstrProject />}></Route> */}
             </Routes>
             <FloatButton.BackTop />
           </Content>
@@ -168,23 +169,25 @@ export default function App() {
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\footer\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         <Layout>
-          <Footer
-            className="h_f"
-            id={theme}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-around",
-              textAlign: "center",
-            }}
-          >
-            {/* <FullFooter /> */}
-            <div>
-              <p>Хотите видеть больше? Подписывайтесь!</p>
+          <div className="main_footer">
+            <Footer
+              id={theme}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-around",
+                textAlign: "center",
+                // Почему когда прописываю эти же стили в css, оно не срабатывает?
+              }}
+            >
+              {/* <FullFooter /> */}
+              <div>
+                <p>Хотите видеть больше? Подписывайтесь!</p>
 
-              <SocialMediaIcons />
-            </div>
-          </Footer>
+                <SocialMediaIcons />
+              </div>
+            </Footer>
+          </div>
         </Layout>
       </div>
       {/* </Suspense> */}

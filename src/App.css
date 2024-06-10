@@ -61,3 +61,18 @@ body {
   padding: 15px;
   border-radius: 20px;
 }
+
+.main_footer {
+  display: "flex";
+  align-items: "center";
+  justify-content: "space-around";
+  text-align: "center";
+}
+
+.main_header {
+  display: "flex";
+  align-items: "center";
+  justify-content: "space-around";
+  padding: 0;
+  text-align: "center";
+}
