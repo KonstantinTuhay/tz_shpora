@@ -1,22 +1,19 @@
 import React, { Suspense, useState } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
-import { Button, Layout, Menu, FloatButton } from "antd";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  MinusOutlined,
-} from "@ant-design/icons";
+import { Layout } from "antd";
+
 import { Footer } from "antd/es/layout/layout";
 
 import ReactThis from "./components/pages/ReactThis";
-import withAdditionalFunctions from "./helpers/navigateHOC";
+// import withAdditionalFunctions from "./helpers/navigateHOC";
 import HomePage from "./components/pages/HomePage";
 import InTheBegining from "./components/pages/InTheBegining";
 import ConstrProject from "./components/pages/ConstrProject";
 import MainHeader from "./components/MainHeader";
 import MyContext from "./components/MyContext";
 import SocialMediaIcons from "./components/social_media/SocialMediaIcons";
+import LeftMenu from "./components/content/LeftMenu";
+import PagesContent from "./components/content/PagesContent";
 
 export default function App() {
   const routes = [
@@ -32,8 +29,6 @@ export default function App() {
   const [theme, setTheme] = useState("dark");
 
   const { Header, Sider, Content } = Layout;
-
-  const [collapsed, setCollapsed] = useState(false);
 
   function SuspLoad() {
     return <h2>🌀 Loading...</h2>;
@@ -71,62 +66,8 @@ export default function App() {
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\menu\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         <Layout className="between" id={theme}>
-          <Sider trigger={null} collapsible collapsed={collapsed}>
-            {/* <LeftMenu /> */}
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              items={[
-                {
-                  key: "1",
-                  icon: <MinusOutlined />,
-                  label: (
-                    <NavLink to="/" activeClassName="active">
-                      Быстрый старт
-                    </NavLink>
-                  ),
-                },
-                {
-                  key: "2",
-                  icon: <MinusOutlined />,
-                  label: (
-                    <NavLink to="/reactthis" activeClassName="active">
-                      React - это...
-                    </NavLink>
-                  ),
-                },
-                {
-                  key: "3",
-                  icon: <MinusOutlined />,
-                  label: (
-                    <NavLink to="/inthebegining" activeClassName="active">
-                      С чего начать?
-                    </NavLink>
-                  ),
-                },
-                {
-                  key: "4",
-                  icon: <MinusOutlined />,
-                  label: (
-                    <NavLink to="/constr_ptoject" activeClassName="active">
-                      Структура проекта
-                    </NavLink>
-                  ),
-                },
-              ]}
-            />
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-                color: "white",
-              }}
-            />
+          <Sider className="side_menu" id={theme}>
+            <LeftMenu theme={theme} />
           </Sider>
           {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
           {/* \\\\\\\\\\\\\\\\\\\\\\\\\\content\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
@@ -140,29 +81,10 @@ export default function App() {
               minHeight: 280,
             }}
           >
-            <Routes>
-              {routes.map((item, index, array) => {
-                const NewComponent = withAdditionalFunctions(item.component);
-                return (
-                  <Route
-                    key={item.route}
-                    path={item.route}
-                    element={
-                      <NewComponent nextRoute={array[index + 1]?.route} />
-                    }
-                  />
-                );
-              })}
-
-              {/* <Route path="/" element={<HomePage />}></Route>
-              <Route path="/reactthis" element={<ReactThis />}></Route>
-              <Route path="/inthebegining" element={<InTheBegining />}></Route>
-              <Route path="/constr_ptoject" element={<ConstrProject />}></Route> */}
-            </Routes>
-            <FloatButton.BackTop />
+            <PagesContent routes={routes} />
           </Content>
 
-          <Sider></Sider>
+          <Sider className="side_menu" id={theme}></Sider>
         </Layout>
 
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
@@ -180,7 +102,6 @@ export default function App() {
                 // Почему когда прописываю эти же стили в css, оно не срабатывает?
               }}
             >
-              {/* <FullFooter /> */}
               <div>
                 <p>Хотите видеть больше? Подписывайтесь!</p>
 
