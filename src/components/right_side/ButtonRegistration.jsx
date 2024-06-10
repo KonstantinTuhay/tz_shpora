@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RegistrationForm from "../RegistrationForm";
+import RegistrationForm from "../forms/RegistrationForm";
 
 const ButtonRegistration = ({ Button, Modal }) => {
   const [open2, setOpen2] = useState(false);

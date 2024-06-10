@@ -9,11 +9,11 @@ import {
 } from "@ant-design/icons";
 import { Footer } from "antd/es/layout/layout";
 
-import ReactThis from "./components/ReactThis";
+import ReactThis from "./components/pages/ReactThis";
 import withAdditionalFunctions from "./helpers/navigateHOC";
-import HomePage from "./components/HomePage";
-import InTheBegining from "./components/InTheBegining";
-import ConstrProject from "./components/ConstrProject";
+import HomePage from "./components/pages/HomePage";
+import InTheBegining from "./components/pages/InTheBegining";
+import ConstrProject from "./components/pages/ConstrProject";
 import MainHeader from "./components/MainHeader";
 import MyContext from "./components/MyContext";
 import SocialMediaIcons from "./components/social_media/SocialMediaIcons";
@@ -72,7 +72,7 @@ export default function App() {
         {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         <Layout className="between" id={theme}>
           <Sider trigger={null} collapsible collapsed={collapsed}>
-            <LeftMenu />
+            {/* <LeftMenu /> */}
             <Menu
               theme="dark"
               mode="inline"

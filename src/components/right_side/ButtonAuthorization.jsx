@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthorizationForm from "../AuthorizationForm";
+import AuthorizationForm from "../forms/AuthorizationForm";
 
 const ButtonAuthorization = ({ Button, Modal }) => {
   const [open1, setOpen1] = useState(false);
