@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Menu } from "antd";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  MinusOutlined,
-} from "@ant-design/icons";
+import { Menu } from "antd";
+import { MinusOutlined } from "@ant-design/icons";
 
 const LeftMenu = ({ theme }) => {
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
     <>
       <Menu
