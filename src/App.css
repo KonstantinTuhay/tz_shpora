@@ -70,3 +70,7 @@ body {
 /* .side_menu#light {
   background: white;
 } */
+
+video {
+  border-radius: 10px;
+}
