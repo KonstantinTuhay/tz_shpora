@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useState, Profiler } from "react";
 import "./App.css";
 
 import AllPage from "./components/AllPage";
@@ -8,6 +8,22 @@ export default function App() {
   // function Loading() {
   //   return <h2>🌀 Loading...</h2>;
   // }
+
+  function onRender(
+    id,
+    phase,
+    actualDuration,
+    baseDuration,
+    startTime,
+    commitTime
+  ) {
+    console.log(id);
+    console.log(phase);
+    console.log(actualDuration);
+    console.log(baseDuration);
+    console.log(startTime);
+    console.log(commitTime);
+  }
 
   const AllPage = lazy(() => import("./components/AllPage"));
   return (
@@ -22,7 +38,9 @@ export default function App() {
           )}
         >
           {" "}
-          <AllPage />
+          <Profiler id="AllPage" onRender={onRender}>
+            <AllPage />
+          </Profiler>
         </Suspense>
       ) : (
         <div id="btnWrapper">
