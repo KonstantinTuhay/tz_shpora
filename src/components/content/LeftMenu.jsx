@@ -34,7 +34,7 @@ const LeftMenu = ({ theme }) => {
             icon: <MinusOutlined />,
             label: (
               <NavLink to="/state" activeClassName="active">
-                State
+                useState
               </NavLink>
             ),
           },
