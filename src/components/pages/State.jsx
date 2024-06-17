@@ -12,7 +12,7 @@ const InTheBegining = () => {
 
   return (
     <>
-      <h2>useState</h2>
+      <h1>useState</h1>
 
       <p>
         Состояние (state) - представляет собой данные, которые используются
@@ -117,8 +117,8 @@ const InTheBegining = () => {
 
             return (
               <div className="App">
-                {txt && <p>Show me \ Hide me</p>}
-                <button onClick={changeState}>Show \ Hide</button>
+                {txt && <p>Show me \\ Hide me</p>}
+                <button onClick={changeState}>Show \\ Hide</button>
               </div>
             );
           }

@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import NavigateHelpers from "../../helpers/NavigateHelpers";
 
 const ReactThis = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const general = () => {
   //   navigate("/");
@@ -15,7 +15,7 @@ const ReactThis = (props) => {
 
   return (
     <div>
-      <h2>Props</h2>
+      <h1>Props</h1>
 
       <p>
         Props (properties) - это объект, который передаётся в компоненты React
