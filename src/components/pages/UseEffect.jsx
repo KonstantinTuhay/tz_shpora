@@ -362,7 +362,10 @@ const ConstrProject = () => {
                     <div>
                       <h2>Что-то пошло не так.</h2>
                       <p>{this.state.error && this.state.error.toString()}</p>
-                      <p>Дополнительная информация: {this.state.errorInfo && this.state.errorInfo.componentStack}</p>
+                      <p>
+                        Дополнительная информация: 
+                        {this.state.errorInfo && this.state.errorInfo.componentStack}
+                      </p>
                     </div>
                   );
                 }
