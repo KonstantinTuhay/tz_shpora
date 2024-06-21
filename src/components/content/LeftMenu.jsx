@@ -200,15 +200,6 @@ const LeftMenu = ({ theme }) => {
               </NavLink>
             ),
           },
-          {
-            key: "22",
-            icon: <MinusOutlined />,
-            label: (
-              <NavLink to="/useReducer" activeClassName="active">
-                useReducer
-              </NavLink>
-            ),
-          },
         ]}
       />
     </>

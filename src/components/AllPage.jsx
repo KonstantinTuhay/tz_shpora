@@ -8,7 +8,6 @@ import SocialMediaIcons from "./social_media/SocialMediaIcons";
 import LeftMenu from "./content/LeftMenu";
 import PagesContent from "./content/PagesContent";
 import Props from "./pages/Props";
-import UseReducer from "./pages/UseReducer";
 import Events from "./pages/Events";
 import Refs from "./pages/Refs";
 import Fragment from "./pages/Fragment";
@@ -51,7 +50,6 @@ const AllPage = () => {
     { route: "/strictMode", component: StrictMode },
     { route: "/profiler", component: Profiler },
     { route: "/useId", component: UseId },
-    { route: "/useReducer", component: UseReducer },
     { route: "/useMemo", component: UseMemo },
     { route: "/useContext", component: UseContext },
     { route: "/storages", component: Storages },
