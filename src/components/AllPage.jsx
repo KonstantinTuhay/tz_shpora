@@ -13,7 +13,6 @@ import Refs from "./pages/Refs";
 import Fragment from "./pages/Fragment";
 import Key from "./pages/Key";
 import Memo from "./pages/Memo";
-import Forms from "./pages/Forms";
 import Routing from "./pages/Routing";
 import Hoc from "./pages/Hoc";
 import UseCallback from "./pages/UseCallback";
@@ -41,7 +40,6 @@ const AllPage = () => {
     { route: "/fragment", component: Fragment },
     { route: "/key", component: Key },
     { route: "/memo", component: Memo },
-    { route: "/forms", component: Forms },
     { route: "/routing", component: Routing },
     { route: "/hoc", component: Hoc },
     { route: "/useCallback", component: UseCallback },

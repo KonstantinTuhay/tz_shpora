@@ -110,15 +110,7 @@ const LeftMenu = ({ theme }) => {
               </NavLink>
             ),
           },
-          {
-            key: "12",
-            icon: <MinusOutlined />,
-            label: (
-              <NavLink to="/forms" activeClassName="active">
-                Forms
-              </NavLink>
-            ),
-          },
+
           {
             key: "13",
             icon: <MinusOutlined />,
@@ -142,7 +134,7 @@ const LeftMenu = ({ theme }) => {
             icon: <MinusOutlined />,
             label: (
               <NavLink to="/hoc" activeClassName="active">
-                Hoc
+                HOC
               </NavLink>
             ),
           },
